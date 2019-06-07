@@ -52,9 +52,9 @@
 			width="24" height="24"></a>
 		<h5 class="my-0 mr-md-auto font-weight-normal">PetStore</h5>
 		<nav class="my-2 my-md-0 mr-md-3">
-			<a class="p-2 text-dark" href="#">Cat&aacute;logo</a>
+			<a class="p-2 text-dark" href="listaDogs">Cat&aacute;logo</a>
 		</nav>
-		<a class="btn btn-outline-primary" href="#">Sign out</a>
+		<a class="btn btn-outline-primary" href="logout">Sign out</a>
 	</div>
 
 	<div
@@ -63,23 +63,23 @@
 	</div>
 
 	<div class="container">
-		<form name="cadCachorro" action="cadastroCachorro" method="POST">
+		<form name="cadCachorro" action="cadastroCachorro?tipo=${tipo}"
+			method="${tipoMetodo}">
 			<div class="row">
 				<div class="form-group col-md-3">
 					<label for="nomeCachorro">Nome Cachorro:</label> <input type="text"
-						class="form-control" value="<c:out value='${nomeDog}' />"
-						name="nomeCachorro" id="nomeCachorro" required>
+						class="form-control" value="${nomeCachorro}" name="nomeCachorro"
+						id="nomeCachorro" required>
 				</div>
 				<div class="form-group col-md-3">
 					<label for="racaCachorro">Ra&ccedil;a do Cachorro:</label> <input
-						type="text" class="form-control"
-						value="<c:out value='${racaDog}' />" name="racaCachorro"
-						id="racaCachorro" required>
+						type="text" class="form-control" value="${racaCachorro}"
+						name="racaCachorro" id="racaCachorro" required>
 				</div>
 				<div class="form-group col-md-3">
 					<label for="pesoCachorro">Peso(kg):</label> <input type="text"
-						class="form-control" value="<c:out value='${pesoDog}' />"
-						name="pesoCachorro" id="pesoCachorro" required>
+						class="form-control" value="${pesoCachorro}" name="pesoCachorro"
+						id="pesoCachorro" required>
 				</div>
 				<div class="form-group col-md-3">
 					<label for="porteCachorro">Porte do Cachorro:</label> <select
@@ -92,17 +92,17 @@
 				</div>
 				<div class="form-group col-md-4">
 					<label for="alturaCachorro">Altura(cm):</label> <input type="text"
-						class="form-control" value="<c:out value='${alturaDog}' />"
+						class="form-control" value="${alturaCachorro}"
 						name="alturaCachorro" id="alturaCachorro" required>
 				</div>
 				<div class="form-group col-md-4">
 					<label for="corCachorro">Cor:</label> <input type="text"
-						class="form-control" value="<c:out value='${corDog}' />"
-						name="corCachorro" id="corCachorro" required>
+						class="form-control" value="${corCachorro}" name="corCachorro"
+						id="corCachorro" required>
 				</div>
 				<div class="form-group col-md-4">
-					<button style="margin-top: 32px" type="submit"
-						class="btn btn-success">Salvar</button>
+					<button style="margin-top: 32px" type="submit" name="idCachorro"
+						value="${idCachorro}" class="btn btn-success">Salvar</button>
 				</div>
 			</div>
 		</form>

@@ -18,7 +18,7 @@ public class logoutServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         sessao.invalidate();
-        response.sendRedirect("login");
+        response.sendRedirect("loginServlet");
     }
 
     @Override

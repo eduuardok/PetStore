@@ -1,6 +1,9 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,17 +19,38 @@ public class adotarDog extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String nome = request.getParameter("nomeDog");
-		String raca = request.getParameter("racaDog");
-		float peso = Float.parseFloat(request.getParameter("pesoDog"));
-		float altura = Float.parseFloat(request.getParameter("alturaDog"));
-		String cor = request.getParameter("corDog");
 
-		Cachorro dog = new Cachorro(nome, raca, peso, altura, cor);
+		int id = Integer.parseInt(request.getParameter("idDog"));
 
-		CachorroDAO.removeDog(dog);
-		
+		try {
+			List<Cachorro> cachorro = CachorroDAO.listarCachorroPorId(id);
+
+			String nome = cachorro.get(0).getNome();
+			String raca = cachorro.get(0).getRaca();
+			float peso = cachorro.get(0).getPeso();
+			float altura = cachorro.get(0).getAltura();
+			String cor = cachorro.get(0).getCor();
+			String porte = cachorro.get(0).getPorte();
+			String status = cachorro.get(0).getStatusAdocao();
+
+			System.out.println("nome" + nome);
+			System.out.println("raca" + raca);
+			System.out.println("peso" + peso);
+			System.out.println("altura" + altura);
+			System.out.println("cor" + cor);
+			System.out.println("porte" + porte);
+			System.out.println("status" + status);
+
+			Cachorro dog = new Cachorro(cachorro.get(0).getId(), nome, raca, peso, altura, cor, porte, status);
+
+			CachorroDAO.adotarCachorro(dog);
+
+		} catch (ClassNotFoundException | SQLException e1) {
+			e1.printStackTrace();
+		}
+
 		request.getRequestDispatcher("listaDogs").forward(request, response);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

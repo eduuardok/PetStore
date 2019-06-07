@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -51,9 +51,9 @@
 			width="24" height="24"></a>
 		<h5 class="my-0 mr-md-auto font-weight-normal">PetStore</h5>
 		<nav class="my-2 my-md-0 mr-md-3">
-			<a class="p-2 text-dark" href="#">Cat&aacute;logo</a>
+			<a class="p-2 text-dark" href="listaDogs">Cat&aacute;logo</a>
 		</nav>
-		<a class="btn btn-outline-primary" href="#">Sign out</a>
+		<a class="btn btn-outline-primary" href="logout">Sign out</a>
 	</div>
 
 	<div
@@ -65,7 +65,7 @@
 
 	<div class="container">
 		<div class="row">
-			<a href="cadastroCachorro"><button type="button"
+			<a href="cadastroCachorro?tipo=cadastro"><button type="button"
 					class="btn btn-info" style="margin-bottom: 10px">Adicionar
 					novo C&atilde;o</button></a>
 		</div>
@@ -73,11 +73,13 @@
 			<table class="table table-hover" action="listaDogs">
 				<thead class="thead-dark">
 					<tr>
+						<th scope="col">#</th>
 						<th scope="col">Nome</th>
 						<th scope="col">Ra&ccedil;a</th>
 						<th scope="col">Peso</th>
 						<th scope="col">Altura</th>
 						<th scope="col">Cor</th>
+						<th scope="col">Status</th>
 						<th scope="col"></th>
 						<th scope="col"></th>
 					</tr>
@@ -85,17 +87,18 @@
 				<tbody>
 					<c:forEach var="cachorro" items="${listaDeDogs}">
 						<tr>
+							<td>${cachorro.id}</td>
 							<td>${cachorro.nome}</td>
-							<td >${cachorro.raca}</td>
+							<td>${cachorro.raca}</td>
 							<td>${cachorro.peso}</td>
 							<td>${cachorro.altura}</td>
-							<td></td>
+							<td>${cachorro.cor}</td>
+							<td>${cachorro.statusAdocao}</td>
 							<td><a
-								href="cadastroCachorro?nomeDog="><button
+								href="cadastroCachorro?idDog=${cachorro.id}&tipo=atualizacao"><button
 										type="button" class="btn btn-outline-success">Editar</button></a></td>
-							<td><a
-								href="adotarDog?nomeDog="><button
-										type="button" class="btn btn-outline-success">Adotar</button></a></td>
+							<td><a href="adotarDog?idDog=${cachorro.id}"><button type="button"
+										class="btn btn-outline-success">Adotar</button></a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

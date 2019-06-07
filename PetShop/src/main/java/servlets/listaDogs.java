@@ -3,7 +3,6 @@ package servlets;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,16 +31,13 @@ public class listaDogs extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		
-
 		RequestDispatcher rd = request.getRequestDispatcher("Cachorros.jsp");
 		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		
+		doGet(request, response);
 	}
 
 }
